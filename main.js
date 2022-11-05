@@ -1,9 +1,11 @@
 
 import birthDays from './birthdays.json'
+import heros from './heros.json'
 // import {createRequire} from "module";
 // const require = createRequire(import.meta.url);
 // birthDays = require('./birthdays.json');
 console.log(birthDays);
+console.log(heros);
 
 // 오늘 날짜의 년, 달 출력
 const today = new Date();
@@ -49,6 +51,20 @@ function showCalendar(year, month){
   addBirthday(month);
 }
 
+function setTier(hero) {
+
+  if (!Object.hasOwn(heros, hero)) return "#000";
+  if (!Object.hasOwn(heros[hero], "tier"))  return "#000";
+  if (heros[hero].tier == "common")  return "#999";
+  else if (heros[hero].tier == "magical") return "#32B04D";
+  else if (heros[hero].tier == "rare") return "#309CDB";
+  else if (heros[hero].tier == "legendary") return "#CE86D8";
+  else if (heros[hero].tier == "fated") return "#E6BB11";
+  else if (heros[hero].tier == "mythic") return "#A21712";
+  else  return "#000";
+
+}
+
 showCalendar(thisYear, thisMonth);
 
 let currentYear = thisYear;
@@ -62,7 +78,6 @@ prevEl.addEventListener('click', function(){
     currentMonth = 11;
   }
   else  currentMonth--;
-  console.log("prev click");
   deleteTable();
   showCalendar(currentYear, currentMonth);
 });
@@ -73,7 +88,6 @@ nextEl.addEventListener('click', function(){
     currentMonth = 0;
   }
   else  currentMonth++;
-  console.log("next click");
   deleteTable();
   showCalendar(currentYear, currentMonth);
 });
@@ -87,14 +101,12 @@ function deleteTable(){
 
 function addBirthday(month){
   let cellEl;
-  console.log(birthDays[month+1]);
   const monthBirth = birthDays[month+1]
   for(let i=0;i<monthBirth.length;i++){
-    console.log(monthBirth[i]);
     cellEl = document.querySelector(`#date-${monthBirth[i][0]}`);
-    console.log(cellEl);
     const birthEl = document.createElement('div');
     birthEl.append(monthBirth[i][1])
+    birthEl.style.color = setTier(monthBirth[i][1]);
     cellEl.append(birthEl);
   }
 }
