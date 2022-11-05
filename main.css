@@ -3,7 +3,12 @@ h1 {
   text-align: center;
 }
 .calendar {
-  
+  align-items: center;
+}
+
+.calendar .calendar-body {
+  text-align: center;
+  margin: 0 auto;
 }
 
 .calendar .year-month {
@@ -17,12 +22,16 @@ h1 {
 }
 .calendar .year-month .month {
 }
-
-.calendar .calendar-body {
-  text-align: center;
+.calendar .year-month .prev-month,
+.calendar .year-month .next-month  {
+  width: 30px;
+  height: 30px;
+  font-size: 30px;
+  cursor: pointer;
 }
 
 .calendar .calendar-date td {
   width: 100px;
   height: 100px;
+  vertical-align: top;
 }

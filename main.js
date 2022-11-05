@@ -1,41 +1,28 @@
-console.log('test');
+
+import birthDays from './birthdays.json'
+
+console.log(birthDays);
 
 // 오늘 날짜의 년, 달 출력
 const today = new Date();
 const thisYear = today.getFullYear();
 const thisMonth = today.getMonth();
 
-const yearEl = document.querySelector('.calendar .year');
-const monthEl = document.querySelector('.calendar .month');
-
-yearEl.textContent = thisYear+'년';
-monthEl.textContent = (thisMonth+1)+'월';
-
-const month1stDay = new Date(thisYear, thisMonth, 1).getDay();
-console.log(new Date(thisYear, thisMonth+1, 0));
-
-var days = new Date(thisYear, thisMonth+1, 0).getDate();
-var dayArray = '';
-
-const calendarEl = document.querySelector('.calendar .calendar-body');
-
-// for (var i=1;i<=days;i++) {
-//   if ((month1stDay+i-1)%7 == 1){
-//     dayArray += "\n";
-//   }
-//   calendarEl.append('<div class="day">' + i + '</div>');
-//   dayArray += i + " ";
-// }
-
-
 function showCalendar(year, month){
-  const firstDay = new Date(year, month, 1).getDay();
+  let firstDay = new Date(year, month, 1).getDay();
   const days = new Date(year, month+1, 0).getDate();
-  const weeks = (month1stDay+days-1)%7+1;
+  const month1stDay = new Date(thisYear, thisMonth, 1).getDay();
+  const weeks = (month1stDay+days+1)%7+1;
   const calendarEl = document.querySelector('.calendar .calendar-date');
   
-  let date = 1;
+  const yearEl = document.querySelector('.calendar .year');
+  const monthEl = document.querySelector('.calendar .month');
+  
+  yearEl.textContent = year+'년';
+  monthEl.textContent = (month+1)+'월';
 
+  let date = 1;
+  firstDay = firstDay==0? 7:firstDay;
   for(let i=0;i<=weeks;i++){
     const rowEl = document.createElement('tr');
     for(let j=1;j<=7;j++){
@@ -46,6 +33,10 @@ function showCalendar(year, month){
       }
       else if(date > days) break;
       else{
+        if(year==thisYear&&month==thisMonth&&date==today.getDate()){
+          cellEl.style.border = "1px solid #333";
+        }
+        cellEl.id = "date-"+date;
         cellEl.append(date);
         rowEl.append(cellEl);
         date++;
@@ -53,8 +44,55 @@ function showCalendar(year, month){
     }
     calendarEl.append(rowEl);
   }
-  
+  addBirthday(month);
 }
 
-// showCalendar(thisYear, thisMonth);
-showCalendar(thisYear, 9);
+showCalendar(thisYear, thisMonth);
+
+let currentYear = thisYear;
+let currentMonth = thisMonth;
+const prevEl = document.querySelector(".calendar .prev-month");
+const nextEl = document.querySelector(".calendar .next-month");
+
+prevEl.addEventListener('click', function(){
+  if(currentMonth == 0){
+    currentYear--;
+    currentMonth = 11;
+  }
+  else  currentMonth--;
+  console.log("prev click");
+  deleteTable();
+  showCalendar(currentYear, currentMonth);
+});
+
+nextEl.addEventListener('click', function(){
+  if(currentMonth == 11){
+    currentYear++;
+    currentMonth = 0;
+  }
+  else  currentMonth++;
+  console.log("next click");
+  deleteTable();
+  showCalendar(currentYear, currentMonth);
+});
+
+function deleteTable(){
+  const calendarEl = document.querySelector('.calendar .calendar-date');
+  while(calendarEl.rows.length!=0){
+    calendarEl.deleteRow(0);
+  }
+}
+
+function addBirthday(month){
+  let cellEl;
+  console.log(birthDays[month+1]);
+  const monthBirth = birthDays[month+1]
+  for(let i=0;i<monthBirth.length;i++){
+    console.log(monthBirth[i]);
+    cellEl = document.querySelector(`#date-${monthBirth[i][0]}`);
+    console.log(cellEl);
+    const birthEl = document.createElement('div');
+    birthEl.append(monthBirth[i][1])
+    cellEl.append(birthEl);
+  }
+}
