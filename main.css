@@ -1,0 +1,28 @@
+
+h1 {
+  text-align: center;
+}
+.calendar {
+  
+}
+
+.calendar .year-month {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  font-size: 20px;
+}
+.calendar .year-month .year {
+}
+.calendar .year-month .month {
+}
+
+.calendar .calendar-body {
+  text-align: center;
+}
+
+.calendar .calendar-date td {
+  width: 100px;
+  height: 100px;
+}
