@@ -20,5 +20,6 @@
   "homepage": "https://github.com/triCoffeeMilk/exos-birthday#readme",
   "devDependencies": {
     "parcel-bundler": "^1.12.5"
-  }
+  },
+  "types" : "modules"
 }
