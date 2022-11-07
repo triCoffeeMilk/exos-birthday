@@ -58,7 +58,7 @@ function setTier(hero) {
   if (heros[hero].tier == "common")  return "#999";
   else if (heros[hero].tier == "magical") return "#32B04D";
   else if (heros[hero].tier == "rare") return "#309CDB";
-  else if (heros[hero].tier == "legendary") return "#CE86D8";
+  else if (heros[hero].tier == "legendary") return "#9D68E4";
   else if (heros[hero].tier == "fated") return "#E6BB11";
   else if (heros[hero].tier == "mythic") return "#A21712";
   else  return "#000";
@@ -107,6 +107,7 @@ function addBirthday(month){
     const birthEl = document.createElement('div');
     birthEl.append(monthBirth[i][1])
     birthEl.style.color = setTier(monthBirth[i][1]);
+    birthEl.style.cursor = 'pointer';
     cellEl.append(birthEl);
   }
 }
