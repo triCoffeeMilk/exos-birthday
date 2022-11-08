@@ -1,16 +1,21 @@
 
+/* HEADER */
 h1 {
   text-align: center;
 }
+
+/* Calendar */
 .calendar {
   align-items: center;
 }
-
 .calendar .calendar-body {
   text-align: center;
   margin: 0 auto;
 }
-
+.calendar .calendar-body .week {
+  font-weight: 700;
+  height: 50px;
+}
 .calendar .year-month {
   display: flex;
   align-items: center;
@@ -29,10 +34,35 @@ h1 {
   font-size: 30px;
   cursor: pointer;
 }
-
 .calendar .calendar-date td {
   width: 100px;
   height: 100px;
   vertical-align: top;
 }
-
+.calendar .birth {
+  font-style: italic;
+  cursor: pointer;
+  position: relative;
+}
+/* Tooltip */
+.calendar .birth .tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #999;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  /* display: flex; */
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+  opacity: 0.9;
+}
+.calendar .birth:hover .tooltip {
+  visibility: visible;
+}

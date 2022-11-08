@@ -104,10 +104,28 @@ function addBirthday(month){
   const monthBirth = birthDays[month+1]
   for(let i=0;i<monthBirth.length;i++){
     cellEl = document.querySelector(`#date-${monthBirth[i][0]}`);
+    // make birthday
+    const name = monthBirth[i][1];
     const birthEl = document.createElement('div');
-    birthEl.append(monthBirth[i][1])
-    birthEl.style.color = setTier(monthBirth[i][1]);
-    birthEl.style.cursor = 'pointer';
+    birthEl.append(name)
+    birthEl.classList.add("birth");
+    birthEl.style.color = setTier(name);
+    // make tooltip
+    const tipEl = document.createElement('div');
+    tipEl.classList.add("tooltip");
+    if (Object.hasOwn(heros, name)){
+      const posEl = document.createElement('div');
+      const elEl = document.createElement('div');
+      posEl.append(heros[name]["position"]);
+      elEl.append(heros[name]["element"]);
+      tipEl.append(posEl);
+      tipEl.append(elEl);
+      // tipEl.append(heros[name]["position"]);
+      // tipEl.append(heros[name]["element"]);
+    }
+    else  tipEl.append("준비중입니다");
+    birthEl.append(tipEl);
+  
     cellEl.append(birthEl);
   }
 }
