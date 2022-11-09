@@ -38,7 +38,7 @@ function showCalendar(year, month){
       else if(date > days) break;
       else{
         if(year==thisYear&&month==thisMonth&&date==today.getDate()){
-          cellEl.style.border = "1px solid #333";
+          cellEl.style.border = "3px solid #FF9999";
         }
         cellEl.id = "date-"+date;
         cellEl.append(date);
@@ -60,7 +60,7 @@ function setTier(hero) {
   else if (heros[hero].tier == "rare") return "#309CDB";
   else if (heros[hero].tier == "legendary") return "#9D68E4";
   else if (heros[hero].tier == "fated") return "#E6BB11";
-  else if (heros[hero].tier == "mythic") return "#A21712";
+  else if (heros[hero].tier == "mythic") return "#CC3333";
   else  return "#000";
 
 }

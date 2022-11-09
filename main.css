@@ -1,3 +1,10 @@
+body {
+  -webkit-touch-callout: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
 
 /* HEADER */
 h1 {
@@ -34,13 +41,15 @@ h1 {
   font-size: 30px;
   cursor: pointer;
 }
+.calendar .calendar-body .week {
+}
 .calendar .calendar-date td {
   width: 100px;
   height: 100px;
   vertical-align: top;
+  border: 1px solid #999;
 }
 .calendar .birth {
-  font-style: italic;
   cursor: pointer;
   position: relative;
 }
@@ -48,9 +57,10 @@ h1 {
 .calendar .birth .tooltip {
   visibility: hidden;
   width: 120px;
-  background-color: #999;
-  color: #fff;
+  background-color: #fff;
+  color: #333;
   text-align: center;
+  border: 1px solid #999;
   border-radius: 6px;
   padding: 5px 0;
   /* display: flex; */
