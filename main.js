@@ -1,70 +1,11 @@
+import { showCalendar, deleteTable } from "./calendar.js"
 import birthDays from './birthdays.json'
 import heros from './heros.json'
-// import {createRequire} from "module";
-// const require = createRequire(import.meta.url);
-// birthDays = require('./birthdays.json');
 
 // 오늘 날짜의 년, 달 출력
 const today = new Date();
 const thisYear = today.getFullYear();
 const thisMonth = today.getMonth();
-
-function showCalendar(year, month){
-  let firstDay = new Date(year, month, 1).getDay();
-  const days = new Date(year, month+1, 0).getDate();
-  let month1stDay = new Date(year, month, 1).getDay();
-  month1stDay = month1stDay==0?7:month1stDay;
-  const weeks = Math.ceil((month1stDay+days-1)/7);
-  const calendarEl = document.querySelector('.calendar .calendar-date');
-  
-  const yearEl = document.querySelector('.calendar .year');
-  const monthEl = document.querySelector('.calendar .month');
-  
-  yearEl.textContent = year+'년';
-  monthEl.textContent = (month+1)+'월';
-
-  let date = 1;
-  firstDay = firstDay==0? 7:firstDay;
-  for(let i=0;i<weeks;i++){
-    const rowEl = document.createElement('tr');
-    for(let j=1;j<=7;j++){
-      let cellEl = document.createElement('td');
-      if(i===0 && j<firstDay){
-        cellEl.append(" ");
-        rowEl.append(cellEl);
-      }
-      else if(date > days){
-        rowEl.append(cellEl);
-        date++;
-      }
-      else{
-        if(year==thisYear&&month==thisMonth&&date==today.getDate()){
-          cellEl.style.border = "3px solid #FF9999";
-        }
-        cellEl.id = "date-"+date;
-        cellEl.append(date);
-        rowEl.append(cellEl);
-        date++;
-      }
-    }
-    calendarEl.append(rowEl);
-  }
-  addBirthday(month);
-}
-
-function setTier(hero) {
-
-  if (!Object.hasOwn(heros, hero)) return "#000";
-  if (!Object.hasOwn(heros[hero], "tier"))  return "#000";
-  if (heros[hero].tier == "common")  return "#999";
-  else if (heros[hero].tier == "magical") return "#32B04D";
-  else if (heros[hero].tier == "rare") return "#309CDB";
-  else if (heros[hero].tier == "legendary") return "#9D68E4";
-  else if (heros[hero].tier == "fated") return "#E6BB11";
-  else if (heros[hero].tier == "mythic") return "#CC3333";
-  else  return "#000";
-
-}
 
 showCalendar(thisYear, thisMonth);
 
@@ -93,40 +34,36 @@ nextEl.addEventListener('click', function(){
   showCalendar(currentYear, currentMonth);
 });
 
-function deleteTable(){
-  const calendarEl = document.querySelector('.calendar .calendar-date');
-  while(calendarEl.rows.length!=0){
-    calendarEl.deleteRow(0);
-  }
-}
+const searchEl = document.querySelector(".search input");
 
-function addBirthday(month){
-  let cellEl;
-  const monthBirth = birthDays[month+1]
-  for(let i=0;i<monthBirth.length;i++){
-    cellEl = document.querySelector(`#date-${monthBirth[i][0]}`);
-    // make birthday
-    const name = monthBirth[i][1];
-    const birthEl = document.createElement('div');
-    birthEl.append(name)
-    birthEl.classList.add("birth");
-    birthEl.style.color = setTier(name);
-    // make tooltip
-    const tipEl = document.createElement('div');
-    tipEl.classList.add("tooltip");
-    if (Object.hasOwn(heros, name)){
-      const posEl = document.createElement('div');
-      const elEl = document.createElement('div');
-      posEl.append(heros[name]["position"]);
-      elEl.append(heros[name]["element"]);
-      tipEl.append(posEl);
-      tipEl.append(elEl);
-      // tipEl.append(heros[name]["position"]);
-      // tipEl.append(heros[name]["element"]);
+searchEl.addEventListener("change", () => {
+  const name = searchEl.value;
+  const resEl = document.querySelector(".search .search-result");
+  // 이름을 가진 영웅이 있다면 그의 생일이 있는 해당 달을 표기해준다.
+  // 여러명일 경우 아래에 리스트를 표기해준다.
+  if(name in heros){
+    resEl.textContent = "";
+    let month;
+    let day;
+    let targetDay;
+    for(month=1; month<=12; month++){
+      for(day=0; day<birthDays[month].length; day++){
+        if(birthDays[month][day][1]===name){
+          currentMonth = month-1;
+          targetDay = birthDays[month][day][0];
+          break;
+        }
+      }
     }
-    else  tipEl.append("준비중입니다");
-    birthEl.append(tipEl);
-  
-    cellEl.append(birthEl);
+    deleteTable();
+    showCalendar(thisYear, currentMonth);
+    const dayEl = document.querySelector(`#date-${targetDay}`);
+    console.log(dayEl);
+    dayEl.style.border = "3px solid #CB344D";
   }
-}
+  // 없으면 검색결과가 없음을 표기한다.
+  else{
+    console.log("검색결과가 없습니다.");
+    resEl.textContent = "검색결과가 없습니다.";
+  }
+});
