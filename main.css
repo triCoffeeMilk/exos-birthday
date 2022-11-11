@@ -11,6 +11,8 @@ header {
   padding: 20px;
 }
 h1 {
+  font-size: 40px;
+  font-weight: 700;
   text-align: center;
 }
 header .home {
@@ -20,6 +22,7 @@ header .home {
 
 /* Calendar */
 .calendar {
+  bottom: 30px;
   align-items: center;
 }
 .calendar .calendar-body {

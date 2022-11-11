@@ -1,11 +1,8 @@
-
 import birthDays from './birthdays.json'
 import heros from './heros.json'
 // import {createRequire} from "module";
 // const require = createRequire(import.meta.url);
 // birthDays = require('./birthdays.json');
-console.log(birthDays);
-console.log(heros);
 
 // 오늘 날짜의 년, 달 출력
 const today = new Date();
