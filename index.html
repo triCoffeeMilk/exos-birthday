@@ -14,14 +14,22 @@
   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"> -->
   <link rel="stylesheet" href="./main.css" />
   <script defer src="./main.js"></script>
+  <script defer src="./search.js"></script>
 </head>
 <body>
   <header>
     <h1> <a href="." class="home"> Exos Heroes Birthday </a> </h1>
-  </header>  
+  </header>
+
   <!-- 원하는 캐릭터의 생일을 알려줍니다. (검색)-->
+  <section class="search">
+    <div class="search-input">
+        <input type="text" placeholder="영웅의 이름을 입력하세요." />
+    </div>
+    <div class="search-result"></div>
+  </section>
+
   <!-- 캐릭터의 생일을 표시한 달력을 보여줍니다. -->
-  
   <section class="calendar">
     <div class="year-month">
       <div class="material-icons prev-month"><span class="material-symbols-outlined">
