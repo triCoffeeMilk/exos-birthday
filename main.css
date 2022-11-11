@@ -20,6 +20,38 @@ header .home {
   color: inherit;
 }
 
+/* Search */
+.search-input {
+  height: 34px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-input input {
+  width: 190px;
+  height: 34px;
+  padding: 4px 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 5px;
+  outline: none;
+  background-color: #fff;
+  color: #777;
+  font-size: 12px;
+}
+.search-input input:focus {
+  border-color: #FF9999;
+}
+.search .search-result {
+  color: #777;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 0;
+}
+
 /* Calendar */
 .calendar {
   bottom: 30px;
