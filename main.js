@@ -12,8 +12,9 @@ const thisMonth = today.getMonth();
 function showCalendar(year, month){
   let firstDay = new Date(year, month, 1).getDay();
   const days = new Date(year, month+1, 0).getDate();
-  const month1stDay = new Date(thisYear, thisMonth, 1).getDay();
-  const weeks = (month1stDay+days+1)%7+1;
+  let month1stDay = new Date(year, month, 1).getDay();
+  month1stDay = month1stDay==0?7:month1stDay;
+  const weeks = Math.ceil((month1stDay+days-1)/7);
   const calendarEl = document.querySelector('.calendar .calendar-date');
   
   const yearEl = document.querySelector('.calendar .year');
@@ -24,7 +25,7 @@ function showCalendar(year, month){
 
   let date = 1;
   firstDay = firstDay==0? 7:firstDay;
-  for(let i=0;i<=weeks;i++){
+  for(let i=0;i<weeks;i++){
     const rowEl = document.createElement('tr');
     for(let j=1;j<=7;j++){
       let cellEl = document.createElement('td');
@@ -32,7 +33,10 @@ function showCalendar(year, month){
         cellEl.append(" ");
         rowEl.append(cellEl);
       }
-      else if(date > days) break;
+      else if(date > days){
+        rowEl.append(cellEl);
+        date++;
+      }
       else{
         if(year==thisYear&&month==thisMonth&&date==today.getDate()){
           cellEl.style.border = "3px solid #FF9999";

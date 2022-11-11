@@ -95,8 +95,8 @@ header .home {
 footer {
   font-size: 12px;
   color: #999;
-  position: fixed;
+  position: relative;
   right: 10px;
-  bottom: 10px;
+  top: 60px;
   text-align: end;
 }
