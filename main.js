@@ -43,9 +43,7 @@ searchEl.addEventListener("change", () => {
   // 여러명일 경우 아래에 리스트를 표기해준다.
   if(name in heros){
     resEl.textContent = "";
-    let month;
-    let day;
-    let targetDay;
+    let month, day, targetDay;
     for(month=1; month<=12; month++){
       for(day=0; day<birthDays[month].length; day++){
         if(birthDays[month][day][1]===name){
@@ -55,10 +53,12 @@ searchEl.addEventListener("change", () => {
         }
       }
     }
+    if(thisMonth>currentMonth)  currentYear = thisYear+1;
+    else  currentYear = thisYear;
     deleteTable();
-    showCalendar(thisYear, currentMonth);
+    showCalendar(currentYear, currentMonth);
     const dayEl = document.querySelector(`#date-${targetDay}`);
-    console.log(dayEl);
+    // console.log(dayEl);
     dayEl.style.border = "3px solid #CB344D";
   }
   // 없으면 검색결과가 없음을 표기한다.
