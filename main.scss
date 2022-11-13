@@ -1,0 +1,129 @@
+body {
+  -webkit-touch-callout: none;
+  user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+h1 {
+  font-size: 35px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* HEADER */
+header {
+  padding: 10px;
+  .home {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+/* Search */
+.search-input {
+  height: 34px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  input {
+    width: 190px;
+    height: 34px;
+    padding: 4px 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+    outline: none;
+    background-color: #fff;
+    color: #777;
+    font-size: 12px;
+    :focus {
+      border-color: #FF9999;
+    }
+  }
+  .search-result {
+    color: #777;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 0;
+  }
+}
+
+/* Calendar */
+.calendar {
+  bottom: 30px;
+  align-items: center;
+  .calendar-body {
+    text-align: center;
+    margin: 0 auto;
+    .week {
+      font-weight: 700;
+      height: 50px;
+    }
+  }
+  .year-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    font-size: 20px;
+    .year {
+      width: 70px;
+      text-align: center;
+    }
+    .month {
+      width: 45px;
+      text-align: center;
+    }
+    .prev-month, .next-month {
+      width: 30px;
+      height: 30px;
+      font-size: 30px;
+      cursor: pointer;
+    }
+  }
+  .calendar-date td {
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    border: 1px solid #999;
+  }
+  .birth {
+    cursor: pointer;
+    position: relative;
+    .tooltip {
+      visibility: hidden;
+      width: 120px;
+      background-color: #fff;
+      color: #333;
+      text-align: center;
+      border: 1px solid #999;
+      border-radius: 6px;
+      padding: 5px 0;
+      /* display: flex; */
+      
+      /* Position the tooltip */
+      position: absolute;
+      z-index: 1;
+      top: 100%;
+      left: 50%;
+      margin-left: -60px;
+      opacity: 0.9;
+    }
+    &:hover .tooltip {
+        visibility: visible;
+    }
+  }  
+}
+/* Footer */
+footer {
+  font-size: 12px;
+  color: #999;
+  position: relative;
+  right: 10px;
+  top: 60px;
+  text-align: end;
+}

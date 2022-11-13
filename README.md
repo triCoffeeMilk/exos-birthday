@@ -18,7 +18,7 @@
 4. ~~드래그 금지~~
 5. 영어 버전도 만들어보기
 6. 사용방법 가이드 추가
-7. today 버튼 추가
+7. ~~today 버튼 추가~~ => home 버튼 누르면 됩니다.
 
 RGB 변환 사이트
 https://www.rapidtables.org/ko/web/color/RGB_Color.html
