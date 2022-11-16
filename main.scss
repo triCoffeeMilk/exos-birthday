@@ -112,12 +112,21 @@ header {
       left: 50%;
       margin-left: -60px;
       opacity: 0.9;
+      img {
+        width: 15px;
+        padding: 0 2px;
+      }
     }
     &:hover .tooltip {
         visibility: visible;
     }
   }  
 }
+
+.element {
+  visibility: hidden;
+}
+
 /* Footer */
 footer {
   font-size: 12px;

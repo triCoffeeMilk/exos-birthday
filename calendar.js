@@ -90,12 +90,14 @@ function addBirthday(month){
     if (Object.hasOwn(heros, name)){
       const posEl = document.createElement('div');
       const elEl = document.createElement('div');
+      const iconEl = document.querySelector(`#${heros[name]["element-eng"]}`);
+      const imgEl = document.createElement('img');
+      imgEl.src = iconEl.src;
       posEl.append(heros[name]["position"]);
+      elEl.append(imgEl);
       elEl.append(heros[name]["element"]);
       tipEl.append(posEl);
       tipEl.append(elEl);
-      // tipEl.append(heros[name]["position"]);
-      // tipEl.append(heros[name]["element"]);
     }
     else  tipEl.append("준비중입니다");
     birthEl.append(tipEl);
