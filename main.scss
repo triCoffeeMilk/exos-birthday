@@ -39,10 +39,12 @@ header {
       background-color: #fff;
       color: #777;
       font-size: 12px;
-      :focus {
+      &:focus {
         border-color: #FF9999;
       }
     }
+  }
+  .search-list {
   }
   .search-result {
     color: #777;
