@@ -21,25 +21,27 @@ header {
 }
 
 /* Search */
-.search-input {
-  height: 34px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  input {
-    width: 190px;
+.search {
+  .search-input {
     height: 34px;
-    padding: 4px 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    border-radius: 5px;
-    outline: none;
-    background-color: #fff;
-    color: #777;
-    font-size: 12px;
-    :focus {
-      border-color: #FF9999;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    input {
+      width: 190px;
+      height: 34px;
+      padding: 4px 10px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      border-radius: 5px;
+      outline: none;
+      background-color: #fff;
+      color: #777;
+      font-size: 12px;
+      :focus {
+        border-color: #FF9999;
+      }
     }
   }
   .search-result {
