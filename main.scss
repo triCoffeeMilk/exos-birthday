@@ -45,6 +45,23 @@ header {
     }
   }
   .search-list {
+    position: relative;
+    display: flex;
+    font-size: 15px;
+    justify-content: center;
+    .list {
+      width: 190px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+      display: none;
+      color: #777;
+      
+      .res {
+        cursor: pointer;
+        padding: 4px 10px;
+        font-size: 12px;
+      }
+    }
   }
   .search-result {
     color: #777;
