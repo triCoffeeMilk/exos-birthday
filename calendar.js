@@ -9,6 +9,33 @@ const today = new Date();
 const thisYear = today.getFullYear();
 const thisMonth = today.getMonth();
 
+showCalendar(thisYear, thisMonth);
+
+let currentYear = thisYear;
+let currentMonth = thisMonth;
+const prevEl = document.querySelector(".calendar .prev-month");
+const nextEl = document.querySelector(".calendar .next-month");
+
+prevEl.addEventListener('click', function(){
+  if(currentMonth == 0){
+    currentYear--;
+    currentMonth = 11;
+  }
+  else  currentMonth--;
+  deleteTable();
+  showCalendar(currentYear, currentMonth);
+});
+
+nextEl.addEventListener('click', function(){
+  if(currentMonth == 11){
+    currentYear++;
+    currentMonth = 0;
+  }
+  else  currentMonth++;
+  deleteTable();
+  showCalendar(currentYear, currentMonth);
+});
+
 export function showCalendar(year, month){
   let firstDay = new Date(year, month, 1).getDay();
   const days = new Date(year, month+1, 0).getDate();
@@ -50,6 +77,8 @@ export function showCalendar(year, month){
     calendarEl.append(rowEl);
   }
   addBirthday(month);
+  currentYear = year;
+  currentMonth = month;
 }
 
 function setTier(hero) {

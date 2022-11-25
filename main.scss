@@ -22,6 +22,7 @@ header {
 
 /* Search */
 .search {
+  position: relative;
   .search-input {
     height: 34px;
     position: relative;
@@ -39,8 +40,31 @@ header {
       background-color: #fff;
       color: #777;
       font-size: 12px;
-      :focus {
+      &:focus {
         border-color: #FF9999;
+      }
+    }
+    .search-list {
+      background-color: #fff;
+      opacity: .8;
+      position: absolute;
+      top: 34px;
+      display: flex;
+      font-size: 15px;
+      justify-content: center;
+      z-index: 1;
+      .list {
+        width: 190px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        display: none;
+        color: #777;
+        
+        .res {
+          cursor: pointer;
+          padding: 4px 10px;
+          font-size: 12px;
+        }
       }
     }
   }
