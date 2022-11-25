@@ -52,17 +52,22 @@ function showSearchCalendar(name) {
   }
 };
 
-function showList(){
-  const listEl = document.querySelector(".search-list .list");
-  var itemEl;
-  var lists = filter();
-  
-  itemEl = document.querySelectorAll(".res");
+function delList(){
+  var itemEl = document.querySelectorAll(".res");
   if(itemEl!=null){
     for(var i=0;i<itemEl.length;i++)
       itemEl[i].remove("div");
   }
+  const listEl = document.querySelector(".search-list .list");
+  listEl.style.display = 'none';
+}
 
+function showList(){
+  const listEl = document.querySelector(".search-list .list");
+  var itemEl;
+  var lists = filter();
+
+  delList();
   // console.log(itemEl);
 
   for(var i=0;i<lists.length;i++){
@@ -73,6 +78,9 @@ function showList(){
     itemEl.addEventListener('click', function(){
       // console.log(this.textContent);
       showSearchCalendar(this.textContent);
+      const searchEl = document.querySelector(".search input");
+      searchEl.value = this.textContent;
+      delList();
     });
 
     listEl.append(itemEl);
